@@ -1,0 +1,25 @@
+[package]
+name = "kokoplay"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "kokoplay"
+path = "src/main.rs"
+
+[dependencies]
+axum = "0.8"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net"] }
+reqwest = { version = "0.13", default-features = false, features = ["blocking", "json"] }
+rodio = { version = "~0.20.1", default-features = false, features = ["wav"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+strip = true
+lto = true
